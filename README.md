@@ -37,7 +37,7 @@ $ git push
 ```
 
 
-## 1. เข้าไปใน folder testenv
+## 1.1. เข้าไปใน folder testenv
 
 * activate
     ```
@@ -49,7 +49,7 @@ $ git push
     ```
     
 
-## 2. ก่อน install django ให้ activate testenv ก่อน
+## 1.2. ก่อน install django ให้ activate testenv ก่อน
 
 * Create Files Named `requirements.txt` พิมพ์ชื่อ libery ที่ต้องการ installl ลงไป เช่น `django`
 ![](./imageForReadme/requirements_txt.png)
@@ -59,39 +59,39 @@ $ git push
     ```
 
 
-## 3. Create Project
+## 1.3. Create Project
 ```
 $ django-admin startproject testproject
 ```
 
-## 4. เข้าไปใน directory `testproject` 
+## 1.4. เข้าไปใน directory `testproject` 
 
 ```
 $ cd testproject
 ```
 
-## 5. Runserver
+## 1.5. Runserver
 ```
 $ python3 manage.py runserver
 ```
 ออกจาก Server ให้พิมพ์ `Ctrl+C`
 
-## 6. Sturcture Files
+## 1.6. Sturcture Files
 ![](./imageForReadme/files_structure.png)
 
-## 7. Create APP
+## 1.7. Create APP
 ```
 $ python3 manage.py startapp myapp
 ```
 
-## 8. Combine myapp in setting.py
+## 1.8. Combine myapp in setting.py
 ![](./imageForReadme/combine_myapp.png)
 
 
-## 9. Strueture app
+## 1.9. Strueture app
 ![](./imageForReadme/app_structure.png)
 
-## 10. setting.py
+## 1.10. setting.py
 ![](./imageForReadme/setting_py.png)
 
 * `SECRET_KEY`
@@ -108,8 +108,6 @@ $ python3 manage.py startapp myapp
 ![](./imageForReadme/MVT.png)
 
 ## 2.2 URLs
-![](./imageForReadme/urls_py.png)
-
 * ### Create Rounting ขั้นตอนแรกสร้าง Function ที่จะแสดงข้อมูลออกทางหน้า Page ก่อน โดยการสร้าาง Function hello ใน views.py
 
 ```python
@@ -121,7 +119,7 @@ from django.http import HttpResponse
 def hello(request):
     return HttpResponse('Hello World')
 ```
-![]()
+![](./imageForReadme/views_py.png)
 
 * ### mapping `urls.py` patern
 ![](./imageForReadme/urls_py.png)
