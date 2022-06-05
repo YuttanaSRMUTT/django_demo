@@ -28,12 +28,17 @@ $ git branch -M main
 $ git remote add origin https://github.com/YuttanaSRMUTT/django_demo.git
 $ git push -u origin main
 ```
-
 ```
 $ git add .
 $ git status
 $ git commit -m "a1"
 $ git push
+```
+```
+$ git add .
+$ git commit -m "v1.0"
+$ git tag v1.0
+$ git push origin v1.0
 ```
 
 
@@ -136,6 +141,111 @@ urlpatterns = [
     path('hello/', views.hello),
 ]
 ```
+
+---
+## 2.3 URLs : Parameter
+* ### `urls.py`
+    ```python
+    # /testproject/testproject/urls.py
+    from django.contrib import admin
+    from django.urls import path
+    from myapp import views
+
+    urlpatterns = [
+        path('admin/', admin.site.urls),
+        path('hello/<int:id>', views.hello),
+    ]
+    ```
+* ### `views.py`
+    ```python
+    # /testproject/myapp/views.py
+    from django.shortcuts import render
+    from django.http import HttpResponse
+
+    # Create your views here.
+    def hello(request, id):
+        return HttpResponse('Hello World Id=' + str(id))
+    ```
+---
+
+## 2.4.1 URLs : RePath เพื่อควบคุม pattern ของยูอาร์แอล (1)
+
+* ### `views.py`
+    ```python
+    # /testproject/myapp/views.py
+    from django.shortcuts import render
+    from django.http import HttpResponse
+
+    # Create your views here.
+    def hello(request, id):
+        return HttpResponse('Hello World Id=' + str(id))
+
+    def article(request, year):
+        return HttpResponse('Article year='+ str(year))
+    ```
+
+* ### `urls.py`
+    ```python
+    # /testproject/testproject/urls.py
+    from django.contrib import admin
+    from django.urls import path, re_path
+    from myapp import views
+
+    urlpatterns = [
+        path('admin/', admin.site.urls),
+        path('hello/<int:id>', views.hello), 
+        # http://127.0.0.1:8000/hello/15
+
+        # re_path(r'/$',),
+        # re_path(r'article/$', views.article),
+        re_path(r'article/(?P<year>[0-9]{4})/$', views.article), 
+        # http://127.0.0.1:8000/article/2022/
+
+    ]
+
+    ```
+---
+## 2.4.2 URLs : RePath เพื่อควบคุม pattern ของยูอาร์แอล Slug (2)
+* ### `views.py`
+    ```python
+    # /testproject/myapp/views.py
+    from django.shortcuts import render
+    from django.http import HttpResponse
+
+    # Create your views here.
+    def hello(request, id):
+        return HttpResponse('Hello World Id=' + str(id))
+        
+    '''
+    def article(request, year):
+        return HttpResponse('Article year='+ str(year))
+    '''
+
+    def article(request, year, slug):
+        return HttpResponse('Article year='+ str(year) +' Slug='+slug)
+
+    ```
+* ### `urls.py`
+    ```python
+    # /testproject/testproject/urls.py
+    from django.contrib import admin
+    from django.urls import path, re_path
+    from myapp import views
+
+    urlpatterns = [
+        path('admin/', admin.site.urls),
+        path('hello/<int:id>', views.hello),
+        # http://127.0.0.1:8000/hello/15
+
+
+        # re_path(r'/$',),
+        # re_path(r'article/(?P<>[]{})$', views.article),
+        re_path(r'article/(?P<year>[0-9]{4})/(?P<slug>[\w-]+)/$', views.article),
+        # http://127.0.0.1:8000/article/2022/basic-python-programming
+        
+    ]
+    ```
+
 
 
 
