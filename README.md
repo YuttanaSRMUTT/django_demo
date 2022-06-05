@@ -51,16 +51,14 @@ $ git push
 
 ## 2. ก่อน install django ให้ activate testenv ก่อน
 
-* Create Files Named `requirements.txt` พิมพ์ชื่อ libery ที่ต้องการ installl ลงไป เช่น django
+* Create Files Named `requirements.txt` พิมพ์ชื่อ libery ที่ต้องการ installl ลงไป เช่น `django`
+![](./imageForReadme/requirements_txt.png)
+
     ```
     $ pip3 install -r requirements.txt
     ```
-    ```
-    $ pip3 install django
-    ```
-    ```
-    $ pip3 install django==3.0.8
-    ```
+
+
 ## 3. Create Project
 ```
 $ django-admin startproject testproject
